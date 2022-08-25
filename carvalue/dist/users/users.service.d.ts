@@ -1,8 +1,11 @@
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
-import { CreateUserDto } from './dtos/create-user.dto';
 export declare class UsersService {
     private repo;
     constructor(repo: Repository<User>);
-    create(input: CreateUserDto): Promise<User>;
+    create(email: string, password: string): Promise<User>;
+    findOne(id: number): Promise<User>;
+    find(email: string): Promise<User[]>;
+    update(): void;
+    remove(): void;
 }

@@ -21,10 +21,18 @@ let UsersService = class UsersService {
     constructor(repo) {
         this.repo = repo;
     }
-    create(input) {
-        const user = this.repo.create(input);
+    create(email, password) {
+        const user = this.repo.create({ email, password });
         return this.repo.save(user);
     }
+    findOne(id) {
+        return this.repo.findOne(id);
+    }
+    find(email) {
+        return this.repo.find({ email });
+    }
+    update() { }
+    remove() { }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),
