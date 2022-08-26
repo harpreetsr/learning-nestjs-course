@@ -6,4 +6,5 @@ export declare class UsersController {
     createUser(input: CreateUserDto): void;
     findUser(id: string): Promise<import("./user.entity").User>;
     find(email: string): Promise<import("./user.entity").User[]>;
+    removeUser(id: string): Promise<import("./user.entity").User>;
 }
