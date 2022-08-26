@@ -21,7 +21,13 @@ let UsersController = class UsersController {
         this.userService = userService;
     }
     createUser(input) {
-        this.userService.create(input);
+        this.userService.create(input.email, input.password);
+    }
+    findUser(id) {
+        return this.userService.findOne(parseInt(id));
+    }
+    find(email) {
+        return this.userService.find(email);
     }
 };
 __decorate([
@@ -31,6 +37,20 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "createUser", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "findUser", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('email')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "find", null);
 UsersController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

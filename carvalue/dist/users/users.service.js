@@ -31,8 +31,21 @@ let UsersService = class UsersService {
     find(email) {
         return this.repo.find({ email });
     }
-    update() { }
-    remove() { }
+    async update(id, attrs) {
+        const user = await this.findOne(id);
+        if (!user) {
+            throw new Error('user not found!');
+        }
+        Object.assign(user, attrs);
+        return this.repo.save(user);
+    }
+    async remove(id) {
+        const user = await this.findOne(id);
+        if (!user) {
+            throw new Error('user not found!');
+        }
+        return this.repo.remove(user);
+    }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),

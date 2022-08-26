@@ -6,6 +6,6 @@ export declare class UsersService {
     create(email: string, password: string): Promise<User>;
     findOne(id: number): Promise<User>;
     find(email: string): Promise<User[]>;
-    update(): void;
-    remove(): void;
+    update(id: number, attrs: Partial<User>): Promise<User>;
+    remove(id: number): Promise<User>;
 }

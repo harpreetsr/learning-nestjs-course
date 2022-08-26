@@ -7,3 +7,13 @@ Content-Type: application/json
   "email": "HarpreetWP@gmail.com",
   "password": "Pass@123"
 }
+
+
+### Find a particular user with given ID
+
+GET http://localhost:3000/auth/1
+
+### Find a particular user with given Email
+
+GET http://localhost:3000/auth/?email=HarpreetWP@gmail.com
+
