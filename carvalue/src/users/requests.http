@@ -22,7 +22,7 @@ GET http://localhost:3000/auth/?email=HarpreetWP@gmail.com
 DELETE  http://localhost:3000/auth/2
 
 ###Update a user
-PATCH http://localhost:3000/auth/4
+PATCH http://localhost:3000/auth/99
 Content-Type: application/json
 
 {
