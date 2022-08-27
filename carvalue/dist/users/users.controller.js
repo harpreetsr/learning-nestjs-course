@@ -50,6 +50,7 @@ __decorate([
 ], UsersController.prototype, "createUser", null);
 __decorate([
     (0, common_1.Get)('/:id'),
+    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
