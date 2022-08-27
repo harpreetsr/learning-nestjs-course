@@ -15,7 +15,7 @@ GET http://localhost:3000/auth/5
 
 ### Find a particular user with given Email
 
-GET http://localhost:3000/auth/?email=email@gmail.com
+GET http://localhost:3000/auth/?email=HarpreetWP@gmail.com
 
 ### Delete a method with given ID
 
