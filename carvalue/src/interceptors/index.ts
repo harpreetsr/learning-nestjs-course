@@ -1,1 +1,5 @@
-export { Serialize, SerializeInterceptor } from './serialize.interceptors';
+export {
+  ClassConstructor,
+  Serialize,
+  SerializeInterceptor,
+} from './serialize.interceptors';
