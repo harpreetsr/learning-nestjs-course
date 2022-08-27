@@ -1,1 +1,1 @@
-export { SerializeInterceptor } from './serialize.interceptors';
+export { Serialize, SerializeInterceptor } from './serialize.interceptors';
