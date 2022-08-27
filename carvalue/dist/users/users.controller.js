@@ -26,7 +26,6 @@ let UsersController = class UsersController {
         this.userService.create(input.email, input.password);
     }
     async findUser(id) {
-        console.log('Handler is running');
         const user = await this.userService.findOne(parseInt(id));
         if (!user) {
             throw new common_1.NotFoundException('User not found!');
@@ -51,8 +50,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "createUser", null);
 __decorate([
-    (0, common_1.Get)('/:id'),
     (0, common_1.UseInterceptors)(interceptors_1.SerializeInterceptor),
+    (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

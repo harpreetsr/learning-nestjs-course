@@ -23,11 +23,9 @@ export class UsersController {
     this.userService.create(input.email, input.password);
   }
 
-  @Get('/:id')
   @UseInterceptors(SerializeInterceptor)
+  @Get('/:id')
   async findUser(@Param('id') id: string) {
-    console.log('Handler is running');
-
     const user = await this.userService.findOne(parseInt(id));
     if (!user) {
       throw new NotFoundException('User not found!');

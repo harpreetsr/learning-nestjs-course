@@ -2,11 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SerializeInterceptor = void 0;
 const operators_1 = require("rxjs/operators");
+const class_transformer_1 = require("class-transformer");
+const user_dto_1 = require("../users/dtos/user.dto");
 class SerializeInterceptor {
     intercept(context, handler) {
-        console.log('I am running before the handler!', context);
         return handler.handle().pipe((0, operators_1.map)((data) => {
-            console.log('I am running before the response is sent out', data);
+            return (0, class_transformer_1.plainToClass)(user_dto_1.UserDto, data, {
+                excludeExtraneousValues: true,
+            });
         }));
     }
 }
