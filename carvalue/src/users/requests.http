@@ -4,7 +4,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "HarpreetWP@gmail.com",
+  "email": "info2preet@gmail.com",
   "password": "Pass@123"
 }
 
@@ -19,7 +19,7 @@ GET http://localhost:3000/auth/?email=HarpreetWP@gmail.com
 
 ### Delete a method with given ID
 
-DELETE  http://localhost:3000/auth/2
+DELETE  http://localhost:3000/auth/4
 
 ###Update a user
 PATCH http://localhost:3000/auth/99
