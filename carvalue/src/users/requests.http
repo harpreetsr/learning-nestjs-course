@@ -8,6 +8,16 @@ Content-Type: application/json
   "password": "Pass@123"
 }
 
+### Sign in user
+
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "info2preet@gmail.com",
+  "password": "Pass@123"
+}
+
 
 ### Find a particular user with given ID
 

@@ -6,7 +6,8 @@ export declare class UsersController {
     private userService;
     private authService;
     constructor(userService: UsersService, authService: AuthService);
-    createUser(input: CreateUserDto): void;
+    createUser(input: CreateUserDto): Promise<import("./user.entity").User>;
+    signin(input: CreateUserDto): Promise<import("./user.entity").User>;
     findUser(id: string): Promise<import("./user.entity").User>;
     find(email: string): Promise<import("./user.entity").User[]>;
     removeUser(id: string): Promise<import("./user.entity").User>;
