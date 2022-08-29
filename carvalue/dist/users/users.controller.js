@@ -35,6 +35,9 @@ let UsersController = class UsersController {
         session.userId = user.id;
         return user;
     }
+    whoAmI(session) {
+        return this.userService.findOne(session.userId);
+    }
     async findUser(id) {
         const user = await this.userService.findOne(parseInt(id));
         if (!user) {
@@ -68,6 +71,13 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto, Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signin", null);
+__decorate([
+    (0, common_1.Get)('/whoami'),
+    __param(0, (0, common_1.Session)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "whoAmI", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
