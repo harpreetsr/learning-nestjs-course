@@ -18,43 +18,60 @@ const create_user_dto_1 = require("./dtos/create-user.dto");
 const update_user_dto_1 = require("./dtos/update-user.dto");
 const users_service_1 = require("./users.service");
 const user_dto_1 = require("./dtos/user.dto");
-const interceptors_1 = require("../interceptors");
 const auth_service_1 = require("./auth.service");
+const interceptors_1 = require("../interceptors");
 let UsersController = class UsersController {
-    constructor(userService, authService) {
-        this.userService = userService;
+    constructor(usersService, authService) {
+        this.usersService = usersService;
         this.authService = authService;
     }
-    async createUser(input, session) {
-        const user = await this.authService.signup(input.email, input.password);
-        session.userId = user.id;
-        return user;
-    }
-    async signin(input, session) {
-        const user = await this.authService.signin(input.email, input.password);
-        session.userId = user.id;
-        return user;
-    }
     whoAmI(session) {
-        return this.userService.findOne(session.userId);
+        return this.usersService.findOne(session.userId);
+    }
+    signOut(session) {
+        session.userId = null;
+    }
+    async createUser(body, session) {
+        const user = await this.authService.signup(body.email, body.password);
+        session.userId = user.id;
+        return user;
+    }
+    async signin(body, session) {
+        const user = await this.authService.signin(body.email, body.password);
+        session.userId = user.id;
+        return user;
     }
     async findUser(id) {
-        const user = await this.userService.findOne(parseInt(id));
+        const user = await this.usersService.findOne(parseInt(id));
         if (!user) {
-            throw new common_1.NotFoundException('User not found!');
+            throw new common_1.NotFoundException('user not found');
         }
         return user;
     }
-    find(email) {
-        return this.userService.find(email);
+    findAllUsers(email) {
+        return this.usersService.find(email);
     }
     removeUser(id) {
-        return this.userService.remove(parseInt(id));
+        return this.usersService.remove(parseInt(id));
     }
     updateUser(id, body) {
-        return this.userService.update(parseInt(id), body);
+        return this.usersService.update(parseInt(id), body);
     }
 };
+__decorate([
+    (0, common_1.Get)('/whoami'),
+    __param(0, (0, common_1.Session)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "whoAmI", null);
+__decorate([
+    (0, common_1.Post)('/signout'),
+    __param(0, (0, common_1.Session)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "signOut", null);
 __decorate([
     (0, common_1.Post)('/signup'),
     __param(0, (0, common_1.Body)()),
@@ -72,13 +89,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signin", null);
 __decorate([
-    (0, common_1.Get)('/whoami'),
-    __param(0, (0, common_1.Session)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "whoAmI", null);
-__decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -91,7 +101,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "find", null);
+], UsersController.prototype, "findAllUsers", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),

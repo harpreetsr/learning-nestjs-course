@@ -22,6 +22,10 @@ Content-Type: application/json
   "password": "Pass@123"
 }
 
+### Sign out user
+
+POST http://localhost:3000/auth/signout
+
 
 ### Find a particular user with given ID
 

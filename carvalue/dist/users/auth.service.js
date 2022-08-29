@@ -14,31 +14,31 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const crypto_1 = require("crypto");
 const util_1 = require("util");
-const script = (0, util_1.promisify)(crypto_1.scrypt);
+const scrypt = (0, util_1.promisify)(crypto_1.scrypt);
 let AuthService = class AuthService {
-    constructor(userService) {
-        this.userService = userService;
+    constructor(usersService) {
+        this.usersService = usersService;
     }
     async signup(email, password) {
-        const userExists = await this.userService.find(email);
-        if (userExists.length) {
-            throw new common_1.BadRequestException('Email already in use!');
+        const users = await this.usersService.find(email);
+        if (users.length) {
+            throw new common_1.BadRequestException('email in use');
         }
         const salt = (0, crypto_1.randomBytes)(8).toString('hex');
-        const hash = (await script(password, salt, 32));
+        const hash = (await scrypt(password, salt, 32));
         const result = salt + '.' + hash.toString('hex');
-        const user = await this.userService.create(email, result);
+        const user = await this.usersService.create(email, result);
         return user;
     }
     async signin(email, password) {
-        const [user] = await this.userService.find(email);
+        const [user] = await this.usersService.find(email);
         if (!user) {
-            throw new common_1.NotFoundException('User not found!');
+            throw new common_1.NotFoundException('user not found');
         }
         const [salt, storedHash] = user.password.split('.');
-        const hash = (await script(password, salt, 32));
+        const hash = (await scrypt(password, salt, 32));
         if (storedHash !== hash.toString('hex')) {
-            throw new common_1.BadRequestException('Bad password');
+            throw new common_1.BadRequestException('bad password');
         }
         return user;
     }
