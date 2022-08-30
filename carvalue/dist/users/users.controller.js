@@ -22,6 +22,7 @@ const auth_service_1 = require("./auth.service");
 const interceptors_1 = require("../interceptors");
 const user_entity_1 = require("./user.entity");
 const decorators_1 = require("./decorators");
+const current_user_interceptor_1 = require("./interceptors/current-user.interceptor");
 let UsersController = class UsersController {
     constructor(usersService, authService) {
         this.usersService = usersService;
@@ -122,6 +123,7 @@ __decorate([
 UsersController = __decorate([
     (0, common_1.Controller)('auth'),
     (0, interceptors_1.Serialize)(user_dto_1.UserDto),
+    (0, common_1.UseInterceptors)(current_user_interceptor_1.CurrentUserInterceptor),
     __metadata("design:paramtypes", [users_service_1.UsersService,
         auth_service_1.AuthService])
 ], UsersController);
