@@ -20,13 +20,15 @@ const users_service_1 = require("./users.service");
 const user_dto_1 = require("./dtos/user.dto");
 const auth_service_1 = require("./auth.service");
 const interceptors_1 = require("../interceptors");
+const user_entity_1 = require("./user.entity");
+const decorators_1 = require("./decorators");
 let UsersController = class UsersController {
     constructor(usersService, authService) {
         this.usersService = usersService;
         this.authService = authService;
     }
-    whoAmI(session) {
-        return this.usersService.findOne(session.userId);
+    whiAmI(user) {
+        return user;
     }
     signOut(session) {
         session.userId = null;
@@ -60,11 +62,11 @@ let UsersController = class UsersController {
 };
 __decorate([
     (0, common_1.Get)('/whoami'),
-    __param(0, (0, common_1.Session)()),
+    __param(0, (0, decorators_1.CurrentUser)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [user_entity_1.User]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "whoAmI", null);
+], UsersController.prototype, "whiAmI", null);
 __decorate([
     (0, common_1.Post)('/signout'),
     __param(0, (0, common_1.Session)()),
