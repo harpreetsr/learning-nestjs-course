@@ -9,10 +9,23 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     // Create a fake copy of the users service
+    const users: User[] = [];
+
     fakeUsersService = {
-      find: () => Promise.resolve([]),
-      create: (email: string, password: string) =>
-        Promise.resolve({ id: 1, email, password } as User),
+      find: (email: string) => {
+        const findUsers = users.filter((user) => user.email === email);
+        return Promise.resolve(findUsers);
+      },
+      create: (email: string, password: string) => {
+        // Promise.resolve({ id: 1, email, password } as User),
+        const user = {
+          id: Math.floor(Math.random() * 9999),
+          email,
+          password,
+        } as User;
+        users.push(user);
+        return Promise.resolve(user);
+      },
     };
 
     const module = await Test.createTestingModule({
@@ -71,15 +84,17 @@ describe('AuthService', () => {
   });
 
   it('returns a user if correct password is provided', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        {
-          email: 'HarpreetWP@gmail.com',
-          password:
-            'db32c24e096cf776.89365bc2d05b796cbfc9e6de1c56c4d0d286b6f99147961dc7b89bb89af9fbd7',
-        } as User,
-      ]);
-    const user = await service.signin('HarpreetWP@gmail.com', 'Pass@123');
+    // fakeUsersService.find = () =>
+    //   Promise.resolve([
+    //     {
+    //       email: 'HarpreetWP@gmail.com',
+    //       password:
+    //         'db32c24e096cf776.89365bc2d05b796cbfc9e6de1c56c4d0d286b6f99147961dc7b89bb89af9fbd7',
+    //     } as User,
+    //   ]);
+
+    await service.signup('HarpreetWP@gmail.com', 'mypassword');
+    const user = await service.signin('HarpreetWP@gmail.com', 'mypassword');
     expect(user).toBeDefined();
   });
 });
