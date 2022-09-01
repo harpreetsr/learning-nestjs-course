@@ -56,4 +56,30 @@ describe('AuthService', () => {
       await service.signin('HarpreetWP@gmail.com', 'Pass@123');
     } catch (err) {}
   });
+
+  it('throws if an invalid password is provided', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        { email: 'HarpreetWP@gmail.com', password: 'Pass@123' } as User,
+      ]);
+
+    try {
+      await service.signin('HSR@email.com', 'Password');
+    } catch (err) {
+      expect(err.toString()).toMatch('BadRequestException: bad password');
+    }
+  });
+
+  it('returns a user if correct password is provided', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        {
+          email: 'HarpreetWP@gmail.com',
+          password:
+            'db32c24e096cf776.89365bc2d05b796cbfc9e6de1c56c4d0d286b6f99147961dc7b89bb89af9fbd7',
+        } as User,
+      ]);
+    const user = await service.signin('HarpreetWP@gmail.com', 'Pass@123');
+    expect(user).toBeDefined();
+  });
 });
