@@ -31,7 +31,7 @@ AppModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'sqlite',
-                database: 'db.sqlite',
+                database: process.env.NODE_ENV === 'test' ? 'test.sqlite' : 'db.sqlite',
                 entities: [user_entity_1.User, report_entity_1.Report],
                 synchronize: true,
             }),
