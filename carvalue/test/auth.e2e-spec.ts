@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+import * as request from 'supertest';
 
-describe('Authentication System (e2e)', () => {
+describe('Authentication System', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -16,16 +16,19 @@ describe('Authentication System (e2e)', () => {
   });
 
   it('handles a signup request', () => {
-    const signupEmail = 'HarpreetWP@gmail.com';
+    const user = {
+      email: 'HarpreetWP@test.com',
+      password: 'password',
+    };
+
     return request(app.getHttpServer())
       .post('/auth/signup')
-      .send({ signupEmail, password: 'Pass@123' })
+      .send(user)
       .expect(201)
       .then((res) => {
         const { id, email } = res.body;
-
         expect(id).toBeDefined();
-        expect(email).toEqual(signupEmail);
+        expect(email).toEqual(user.email);
       });
   });
 });
