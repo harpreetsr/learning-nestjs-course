@@ -1,4 +1,3 @@
 **node_modules
 
-carvalue/.env.development
-carvalue/.env.test
+**.env.*
