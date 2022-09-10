@@ -21,8 +21,9 @@ let ReportsService = class ReportsService {
     constructor(repo) {
         this.repo = repo;
     }
-    async create(body) {
+    async create(body, user) {
         const report = await this.repo.create(body);
+        report.user = user;
         return this.repo.save(report);
     }
 };

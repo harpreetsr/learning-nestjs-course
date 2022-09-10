@@ -4,7 +4,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
+  "email": "HarpreetWP@gmail.com",
   "password": "12345"
 }
 
@@ -14,8 +14,8 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "info2preet@gmail.com",
-  "password": "Pass@123"
+  "email": "HarpreetWP@gmail.com",
+  "password": "12345"
 }
 
 ### Get the currently signed in
