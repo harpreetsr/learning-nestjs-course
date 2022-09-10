@@ -19,23 +19,26 @@ const reports_service_1 = require("./reports.service");
 const auth_guard_1 = require("../guards/auth.guard");
 const decorators_1 = require("../users/decorators");
 const user_entity_1 = require("../users/user.entity");
+const report_dto_1 = require("./dtos/report.dto");
+const interceptors_1 = require("../interceptors");
 let ReportsController = class ReportsController {
     constructor(reportsService) {
         this.reportsService = reportsService;
     }
-    createReports(body, user) {
+    createReport(body, user) {
         return this.reportsService.create(body, user);
     }
 };
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    (0, interceptors_1.Serialize)(report_dto_1.ReportDto),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, decorators_1.CurrentUser)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_report_dto_1.CreateReportDto, user_entity_1.User]),
     __metadata("design:returntype", void 0)
-], ReportsController.prototype, "createReports", null);
+], ReportsController.prototype, "createReport", null);
 ReportsController = __decorate([
     (0, common_1.Controller)('reports'),
     __metadata("design:paramtypes", [reports_service_1.ReportsService])

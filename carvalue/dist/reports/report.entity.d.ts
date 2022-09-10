@@ -7,6 +7,6 @@ export declare class Report {
     year: number;
     lng: number;
     lat: number;
-    milege: number;
+    mileage: number;
     user: User;
 }

@@ -2,7 +2,7 @@ export declare class CreateReportDto {
     make: string;
     model: string;
     year: number;
-    milege: number;
+    mileage: number;
     lng: number;
     lat: number;
     price: number;

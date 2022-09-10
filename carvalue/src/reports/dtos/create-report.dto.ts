@@ -22,7 +22,7 @@ export class CreateReportDto {
   @IsNumber()
   @Min(0)
   @Max(100000)
-  milege: number;
+  mileage: number;
 
   @IsLongitude()
   lng: number;

@@ -25,7 +25,7 @@ export class Report {
   lat: number;
 
   @Column()
-  milege: number;
+  mileage: number;
 
   @ManyToOne(() => User, (user) => user.reports)
   user: User;

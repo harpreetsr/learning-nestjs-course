@@ -4,5 +4,5 @@ import { User } from 'src/users/user.entity';
 export declare class ReportsController {
     private reportsService;
     constructor(reportsService: ReportsService);
-    createReports(body: CreateReportDto, user: User): Promise<import("./report.entity").Report>;
+    createReport(body: CreateReportDto, user: User): Promise<import("./report.entity").Report>;
 }

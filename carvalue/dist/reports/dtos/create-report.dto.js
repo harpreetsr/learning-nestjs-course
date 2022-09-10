@@ -32,7 +32,7 @@ __decorate([
     (0, class_validator_1.Min)(0),
     (0, class_validator_1.Max)(100000),
     __metadata("design:type", Number)
-], CreateReportDto.prototype, "milege", void 0);
+], CreateReportDto.prototype, "mileage", void 0);
 __decorate([
     (0, class_validator_1.IsLongitude)(),
     __metadata("design:type", Number)
