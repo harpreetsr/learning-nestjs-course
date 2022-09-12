@@ -36,6 +36,10 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: true }),
+    __metadata("design:type", Boolean)
+], User.prototype, "admin", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => report_entity_1.Report, (report) => report.user),
     __metadata("design:type", Array)
 ], User.prototype, "reports", void 0);

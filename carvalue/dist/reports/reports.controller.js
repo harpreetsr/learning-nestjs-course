@@ -22,6 +22,7 @@ const user_entity_1 = require("../users/user.entity");
 const report_dto_1 = require("./dtos/report.dto");
 const interceptors_1 = require("../interceptors");
 const approved_report_dto_1 = require("./dtos/approved-report.dto");
+const admin_guard_1 = require("../guards/admin.guard");
 let ReportsController = class ReportsController {
     constructor(reportsService) {
         this.reportsService = reportsService;
@@ -45,6 +46,7 @@ __decorate([
 ], ReportsController.prototype, "createReport", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
