@@ -1,6 +1,14 @@
 import { NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import { User } from '../user.entity';
 import { UsersService } from '../users.service';
+declare global {
+    namespace Express {
+        interface Request {
+            currentUser?: User;
+        }
+    }
+}
 export declare class CurrentUserMiddleware implements NestMiddleware {
     private usersService;
     constructor(usersService: UsersService);
