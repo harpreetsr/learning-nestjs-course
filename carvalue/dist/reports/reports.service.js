@@ -26,6 +26,13 @@ let ReportsService = class ReportsService {
         report.user = user;
         return this.repo.save(report);
     }
+    async changeApproval(id, approved) {
+        const report = await this.repo.findOne(id);
+        if (!report) {
+            throw new common_1.NotFoundException('Report not found');
+        }
+        return await this.repo.save(Object.assign(Object.assign({}, report), { approved }));
+    }
 };
 ReportsService = __decorate([
     (0, common_1.Injectable)(),

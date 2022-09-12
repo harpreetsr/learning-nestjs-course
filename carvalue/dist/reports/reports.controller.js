@@ -21,12 +21,16 @@ const decorators_1 = require("../users/decorators");
 const user_entity_1 = require("../users/user.entity");
 const report_dto_1 = require("./dtos/report.dto");
 const interceptors_1 = require("../interceptors");
+const approved_report_dto_1 = require("./dtos/approved-report.dto");
 let ReportsController = class ReportsController {
     constructor(reportsService) {
         this.reportsService = reportsService;
     }
     createReport(body, user) {
         return this.reportsService.create(body, user);
+    }
+    approveReports(id, body) {
+        return this.reportsService.changeApproval(id, body.approved);
     }
 };
 __decorate([
@@ -39,6 +43,14 @@ __decorate([
     __metadata("design:paramtypes", [create_report_dto_1.CreateReportDto, user_entity_1.User]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "createReport", null);
+__decorate([
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, approved_report_dto_1.ApprovedReportDto]),
+    __metadata("design:returntype", void 0)
+], ReportsController.prototype, "approveReports", null);
 ReportsController = __decorate([
     (0, common_1.Controller)('reports'),
     __metadata("design:paramtypes", [reports_service_1.ReportsService])
