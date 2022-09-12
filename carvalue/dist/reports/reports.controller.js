@@ -23,9 +23,12 @@ const report_dto_1 = require("./dtos/report.dto");
 const interceptors_1 = require("../interceptors");
 const approved_report_dto_1 = require("./dtos/approved-report.dto");
 const admin_guard_1 = require("../guards/admin.guard");
+const get_estimate_dto_1 = require("./dtos/get-estimate.dto");
 let ReportsController = class ReportsController {
     constructor(reportsService) {
         this.reportsService = reportsService;
+    }
+    getEstimate(query) {
     }
     createReport(body, user) {
         return this.reportsService.create(body, user);
@@ -34,6 +37,13 @@ let ReportsController = class ReportsController {
         return this.reportsService.changeApproval(id, body.approved);
     }
 };
+__decorate([
+    (0, common_1.Get)(''),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [get_estimate_dto_1.GetEstimateDto]),
+    __metadata("design:returntype", void 0)
+], ReportsController.prototype, "getEstimate", null);
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
