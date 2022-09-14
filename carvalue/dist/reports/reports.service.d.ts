@@ -6,7 +6,7 @@ import { Report } from './report.entity';
 export declare class ReportsService {
     private repo;
     constructor(repo: Repository<Report>);
-    createEstimate(estimateDto: GetEstimateDto): Promise<any[]>;
+    createEstimate({ make, model, lng, lat, year, mileage }: GetEstimateDto): Promise<any>;
     create(body: CreateReportDto, user: User): Promise<Report>;
     changeApproval(id: string, approved: boolean): Promise<{
         approved: boolean;
