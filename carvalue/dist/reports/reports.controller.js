@@ -29,6 +29,7 @@ let ReportsController = class ReportsController {
         this.reportsService = reportsService;
     }
     getEstimate(query) {
+        return this.reportsService.createEstimate(query);
     }
     createReport(body, user) {
         return this.reportsService.create(body, user);
@@ -38,7 +39,7 @@ let ReportsController = class ReportsController {
     }
 };
 __decorate([
-    (0, common_1.Get)(''),
+    (0, common_1.Get)(),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [get_estimate_dto_1.GetEstimateDto]),

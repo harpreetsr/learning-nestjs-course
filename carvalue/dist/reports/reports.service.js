@@ -21,6 +21,13 @@ let ReportsService = class ReportsService {
     constructor(repo) {
         this.repo = repo;
     }
+    createEstimate(estimateDto) {
+        return this.repo
+            .createQueryBuilder()
+            .select('*')
+            .where('make = :make', { make: estimateDto.make })
+            .getRawMany();
+    }
     async create(body, user) {
         const report = await this.repo.create(body);
         report.user = user;

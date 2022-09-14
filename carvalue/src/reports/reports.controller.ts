@@ -22,9 +22,9 @@ import { GetEstimateDto } from './dtos/get-estimate.dto';
 export class ReportsController {
   constructor(private reportsService: ReportsService) {}
 
-  @Get('')
+  @Get()
   getEstimate(@Query() query: GetEstimateDto) {
-    // return this.reportsService.getEstimate(body);
+    return this.reportsService.createEstimate(query);
   }
 
   @Post()
