@@ -5,10 +5,10 @@ import { getConnection } from 'typeorm';
 global.beforeEach(async () => {
   try {
     await rm(join(__dirname, '..', 'test.sqlite'));
-  } catch (error) {}
+  } catch (err) {}
 });
 
 global.afterEach(async () => {
-  const connection = getConnection();
-  await connection.close();
+  const conn = getConnection();
+  await conn.close();
 });

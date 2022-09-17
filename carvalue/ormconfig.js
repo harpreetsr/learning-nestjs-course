@@ -19,14 +19,13 @@ switch (process.env.NODE_ENV) {
       type: 'sqlite',
       database: 'test.sqlite',
       entities: ['**/*.entity.ts'],
+      migrationsRun: true,
     });
     break;
-
   case 'production':
     break;
-
   default:
-    throw new Error('unkown environment');
+    throw new Error('unknown environment');
 }
 
 module.exports = dbConfig;
