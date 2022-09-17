@@ -26,7 +26,7 @@ let AppModule = class AppModule {
     configure(consumer) {
         consumer
             .apply(cookieSession({
-            keys: this.configService.get('COOKIE_KEY'),
+            keys: [this.configService.get('COOKIE_KEY')],
         }))
             .forRoutes('*');
     }
