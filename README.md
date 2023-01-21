@@ -1,3 +1,3 @@
 # Learning NestJS Course
 
-NestJS: The Complete Developer's Guide
+The Complete Developer's Guide
